@@ -1,0 +1,41 @@
+plugins {
+    id 'java'
+}
+
+group 'com.yhh'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src/main/java']
+        }
+    }
+
+    test {
+        java {
+            srcDirs = ['src/test/java/']
+            exclude '**/*IT.java'
+        }
+    }
+}
+
+dependencies {
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter', version: spring_boot_starter_version
+
+    compile(group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: spring_boot_starter_version) {
+        exclude(module: 'spring-boot-starter-logging')
+        exclude(module: 'spring-boot-starter-tomcat')
+    }
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-undertow', version: spring_boot_starter_version
+
+    compile group: 'org.projectlombok', name: 'lombok', version: lombok_version
+    
+    testCompile group: 'junit', name: 'junit', version: junit_version
+}
